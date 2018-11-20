@@ -3,8 +3,6 @@
  */
 package com.example.controller;
 
-import java.util.Arrays;
-
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.model.Voiture;
 import com.example.repo.VoitureRepository;
-import com.example.repo.VoitureRepositoryCustom;
 
 /**
- * @author Dylan
+ * 
  *
  */
 @Controller
