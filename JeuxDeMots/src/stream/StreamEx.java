@@ -101,7 +101,7 @@ public class StreamEx {
 
 	public static void main(String[] args) {
 		List<Voiture> voit = ajoutVoiture();
-		Stream<List<Etudiant>> list = Stream.of(one, two);
+		Stream<List<Etudiant>> stream = Stream.of(one, two);
 //		selectRouge7(voit);
 //		streamTest();
 //	compterElement();
@@ -624,9 +624,9 @@ public class StreamEx {
 		List<String> one = Arrays.asList("5", "1", "2");
 		List<String> two = Arrays.asList("6", "3");
 
-		Stream<List<String>> list = Stream.of(one, two);
+		Stream<List<String>> stream = Stream.of(one, two);
 
-		System.out.println(list.flatMap(l -> l.stream()).map(x -> Integer.parseInt(x)).reduce(0, (a, b) -> a + b));
+		System.out.println(stream.flatMap(l -> l.stream()).map(x -> Integer.parseInt(x)).reduce(0, (a, b) -> a + b));
 
 	}
 
@@ -638,9 +638,9 @@ public class StreamEx {
 		List<String> one = Arrays.asList("5", "1", "2");
 		List<String> two = Arrays.asList("6", "3");
 
-		Stream<List<String>> list = Stream.of(one, two);
+		Stream<List<String>> stream = Stream.of(one, two);
 
-		return list.flatMap(l -> l.stream()).map(x -> Integer.parseInt(x)).reduce(0, (a, b) -> a + b);
+		return stream.flatMap(l -> l.stream()).map(x -> Integer.parseInt(x)).reduce(0, (a, b) -> a + b);
 
 	}
 
@@ -649,9 +649,9 @@ public class StreamEx {
 	 */
 	public Integer streamTest5552(List<String> one, List<String> two) {
 
-		Stream<List<String>> list = Stream.of(one, two);
+		Stream<List<String>> stream = Stream.of(one, two);
 
-		return list.flatMap(l -> l.stream()).map(x -> Integer.parseInt(x)).reduce(0, (a, b) -> a + b);
+		return stream.flatMap(l -> l.stream()).map(x -> Integer.parseInt(x)).reduce(0, (a, b) -> a + b);
 
 	}
 
@@ -702,26 +702,26 @@ public class StreamEx {
 
 	public static void notePlusFaible2() {
 
-		Stream<List<Etudiant>> list = Stream.of(one, two);
+		Stream<List<Etudiant>> stream = Stream.of(one, two);
 
-		list.flatMap(l -> l.stream()).sorted(Comparator.comparing(x -> x.getNoteEtudiant())).limit(1)
+		stream.flatMap(l -> l.stream()).sorted(Comparator.comparing(x -> x.getNoteEtudiant())).limit(1)
 				.forEach(x -> System.out.println(x.getName()));
 	}
 
 	public static void notePlusFaible3() {
 
-		Stream<List<Etudiant>> list = Stream.of(one, two);
+		Stream<List<Etudiant>> stream = Stream.of(one, two);
 
-		list.flatMap(l -> l.stream()).sorted(Comparator.comparing(x -> x.getNoteEtudiant())).findFirst()
+		stream.flatMap(l -> l.stream()).sorted(Comparator.comparing(x -> x.getNoteEtudiant())).findFirst()
 				.ifPresent(x -> System.out.println(x.getName()));
 
 	}
 
 	public static void notePlusFaible() {
 
-		Stream<List<Etudiant>> list = Stream.of(one, two);
+		Stream<List<Etudiant>> stream = Stream.of(one, two);
 
-		list.flatMap(l -> l.stream()).max(Comparator.comparing(t -> t.getNoteEtudiant()))
+		stream.flatMap(l -> l.stream()).max(Comparator.comparing(t -> t.getNoteEtudiant()))
 				.ifPresent(x -> System.out.println(x.getName() + ";" + x.getNoteEtudiant()));
 
 	}
@@ -729,26 +729,26 @@ public class StreamEx {
 	// pour test unitaire
 	public Optional<Etudiant> notePlusHaute10() {
 
-		Stream<List<Etudiant>> list = Stream.of(one, two);
+		Stream<List<Etudiant>> stream = Stream.of(one, two);
 
-		return list.flatMap(l -> l.stream()).max(Comparator.comparing(t -> t.getNoteEtudiant()));
+		return stream.flatMap(l -> l.stream()).max(Comparator.comparing(t -> t.getNoteEtudiant()));
 
 	}
 
 	public static void moyenneNoteClasse2() {
 
-		Stream<List<Etudiant>> list = Stream.of(one, two);
+		Stream<List<Etudiant>> stream = Stream.of(one, two);
 
-		Double somme = list.flatMap(l -> l.stream()).map(Etudiant::getNoteEtudiant).reduce(0.0, (a, b) -> a + b);
+		Double somme = stream.flatMap(l -> l.stream()).map(Etudiant::getNoteEtudiant).reduce(0.0, (a, b) -> a + b);
 		System.out.println(somme / (one.size() + two.size()));
 
 	}
 
 	public static void moyenneNoteClasse() {
 
-		Stream<List<Etudiant>> list = Stream.of(one, two);
+		Stream<List<Etudiant>> stream = Stream.of(one, two);
 
-		Double somme = list.flatMap(l -> l.stream()).map(Etudiant::getNoteEtudiant).reduce(0.0, (a, b) -> a + b);
+		Double somme = stream.flatMap(l -> l.stream()).map(Etudiant::getNoteEtudiant).reduce(0.0, (a, b) -> a + b);
 		long size = Stream.of(one, two).flatMap(r -> r.stream()).count();
 		System.out.println(somme / size);
 
@@ -756,73 +756,73 @@ public class StreamEx {
 
 	public static void noteFois5EtOnPrendNoteLaPlusFaible() {
 
-		Stream<List<Etudiant>> list = Stream.of(one, two);
+		Stream<List<Etudiant>> stream = Stream.of(one, two);
 
-		list.flatMap(l -> l.stream()).min(Comparator.comparing(t -> t.getNoteEtudiant()))
+		stream.flatMap(l -> l.stream()).min(Comparator.comparing(t -> t.getNoteEtudiant()))
 				.ifPresent(r -> System.out.println(r.getName() + ":" + r.getNoteEtudiant() * 5));
 	}
 
-	public static void nomQuiPossedeMick(Stream<List<Etudiant>> list) {
+	public static void nomQuiPossedeMick(Stream<List<Etudiant>> stream) {
 
-		list.flatMap(l -> l.stream()).map(Etudiant::getName).filter(r -> r.contains("Mick"))
+		stream.flatMap(l -> l.stream()).map(Etudiant::getName).filter(r -> r.contains("Mick"))
 				.forEach(x -> System.out.println(x));
 	}
 
 	// pour test unitaire
-	public List<String> nomQuiPossedeMick2(Stream<List<Etudiant>> list) {
+	public List<String> nomQuiPossedeMick2(Stream<List<Etudiant>> stream) {
 
-		return list.flatMap(l -> l.stream()).map(Etudiant::getName).filter(r -> r.contains("Mick"))
+		return stream.flatMap(l -> l.stream()).map(Etudiant::getName).filter(r -> r.contains("Mick"))
 				.collect(Collectors.toList());
 
 	}
 
-	public static void etudiantNoteSupEtInf50_2(Stream<List<Etudiant>> list) {
+	public static void etudiantNoteSupEtInf50_2(Stream<List<Etudiant>> stream) {
 		List<Etudiant> liste2 = new ArrayList<>();
 
-		Stream.of(one, two).flatMap(l -> l.stream()).filter(x -> x.getNoteEtudiant() * 5 > 50)
+		stream.flatMap(l -> l.stream()).filter(x -> x.getNoteEtudiant() * 5 > 50)
 				.forEach(t -> liste2.add(t));
 
-		Stream.of(one, two).flatMap(l -> l.stream()).filter(x -> x.getNoteEtudiant() * 5 < 50)
+		stream.flatMap(l -> l.stream()).filter(x -> x.getNoteEtudiant() * 5 < 50)
 				.forEach(t -> liste2.add(t));
 
 		liste2.forEach(x -> System.out.print(x.getName()));
 
 	}
 
-	public static void etudiantNoteSupEtInf50_3(Stream<List<Etudiant>> list) {
+	public static void etudiantNoteSupEtInf50_3(Stream<List<Etudiant>> stream) {
 		List<String> liste2 = new ArrayList<>();
 
-		Stream.of(one, two).flatMap(l -> l.stream()).filter(x -> x.getNoteEtudiant() * 5 > 50)
+		stream.flatMap(l -> l.stream()).filter(x -> x.getNoteEtudiant() * 5 > 50)
 				.forEach(t -> liste2.add(t.getName()));
 
-		Stream.of(one, two).flatMap(l -> l.stream()).filter(x -> x.getNoteEtudiant() * 5 < 50)
+		stream.flatMap(l -> l.stream()).filter(x -> x.getNoteEtudiant() * 5 < 50)
 				.forEach(t -> liste2.add(t.getName()));
 
 		System.out.println(liste2);
 
 	}
 
-	public static void etudiantNoteSupEtInf50_4(Stream<List<Etudiant>> list) {
+	public static void etudiantNoteSupEtInf50_4(Stream<List<Etudiant>> stream) {
 		List<String> liste2 = new ArrayList<>();
 		List<String> liste3 = new ArrayList<>();
 
-		Stream.of(one, two).flatMap(l -> l.stream()).filter(x -> x.getNoteEtudiant() * 5 > 50)
+		stream.flatMap(l -> l.stream()).filter(x -> x.getNoteEtudiant() * 5 > 50)
 				.forEach(t -> liste2.add(t.getName() + " " + t.getNoteEtudiant()));
 
-		Stream.of(one, two).flatMap(l -> l.stream()).filter(x -> x.getNoteEtudiant() * 5 < 50)
+		stream.flatMap(l -> l.stream()).filter(x -> x.getNoteEtudiant() * 5 < 50)
 				.forEach(t -> liste3.add(t.getName() + " " + t.getNoteEtudiant()));
 
 		System.out.println(liste2 + ";" + liste3);
 
 	}
 
-	public static void etudiantNoteSupEtInf50_6(Stream<List<Etudiant>> list) {
+	public static void etudiantNoteSupEtInf50_6(Stream<List<Etudiant>> stream) {
 		List<Etudiant> liste2 = new ArrayList<>();
 		List<Etudiant> liste3 = new ArrayList<>();
 
-		liste2 = Stream.of(one, two).flatMap(l -> l.stream()).filter(x -> x.getNoteEtudiant() * 5 > 50)
+		liste2 = stream.flatMap(l -> l.stream()).filter(x -> x.getNoteEtudiant() * 5 > 50)
 				.collect(Collectors.toList());
-		liste3 = Stream.of(one, two).flatMap(l -> l.stream()).filter(x -> x.getNoteEtudiant() * 5 < 50)
+		liste3 = stream.flatMap(l -> l.stream()).filter(x -> x.getNoteEtudiant() * 5 < 50)
 				.collect(Collectors.toList());
 		liste2.forEach(a -> System.out.println(a.getName() + " " + a.getNoteEtudiant()));
 		liste3.forEach(a -> System.out.println(a.getName() + " " + a.getNoteEtudiant()));
@@ -832,9 +832,9 @@ public class StreamEx {
 	 * pour test unitaire
 	 * 
 	 */
-	public List<Etudiant> etudiantNoteSupEtInf50_7(Stream<List<Etudiant>> list) {
+	public List<Etudiant> etudiantNoteSupEtInf50_7(Stream<List<Etudiant>> stream) {
 
-		return Stream.of(one, two).flatMap(l -> l.stream()).filter(x -> x.getNoteEtudiant() * 5 < 50)
+		return stream.flatMap(l -> l.stream()).filter(x -> x.getNoteEtudiant() * 5 < 50)
 				.collect(Collectors.toList());
 	}
 
@@ -865,11 +865,11 @@ public class StreamEx {
 		liste3.forEach(a -> System.out.println(a.getName() + " " + a.getNoteEtudiant()));
 	}
 
-	public static void etudiantMickeySappelNowJess(Stream<List<Etudiant>> List) {
+	public static void etudiantMickeySappelNowJess(Stream<List<Etudiant>> stream) {
 
 		List<Etudiant> liste2 = new ArrayList<>();
 
-		liste2 = Stream.of(one, two).flatMap(l -> l.stream()).map(etudiant -> {
+		liste2 = stream.flatMap(l -> l.stream()).map(etudiant -> {
 			if (etudiant.getName().contains("Mickey")) { // etudiant vaut x comme lambda
 				etudiant.setName("Jess");
 			}
@@ -882,9 +882,9 @@ public class StreamEx {
 	 * pour test unitaire
 	 * 
 	 */
-	public List<Etudiant> etudiantMickeySappelNowJess2(Stream<List<Etudiant>> List) {
+	public List<Etudiant> etudiantMickeySappelNowJess2(Stream<List<Etudiant>> stream) {
 
-		return Stream.of(one, two).flatMap(l -> l.stream()).map(etudiant -> {
+		return stream.flatMap(l -> l.stream()).map(etudiant -> {
 			if (etudiant.getName().contains("Mickey")) { // etudiant vaut x comme lambda
 				etudiant.setName("Jess");
 			}
@@ -1106,8 +1106,7 @@ public class StreamEx {
 					}
 				return e;
 			})
-			.filter(x -> x.getMatiere().stream().filter(s -> s.getNote() < 10)
-			.findFirst().isPresent())
+			.filter(x -> x.getMatiere().stream().filter(s -> s.getNom().equals("Physique") && s.getNote() < 10).findAny().isPresent())
 			.forEach(x -> System.out.println(x.getName()));
 	}
 
@@ -1233,4 +1232,8 @@ public class StreamEx {
 			});
 	}
 
+	public static void testLog() {
+		
+		System.out.println("test");
+	}
 }
