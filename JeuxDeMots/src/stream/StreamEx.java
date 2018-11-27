@@ -33,7 +33,7 @@ public class StreamEx {
 
 	static Etudiant etudiant4 = new Etudiant("Mickey", 13.1, 2, 12);
 	static Etudiant etudiant5 = new Etudiant("Cendrillon", 8.9, 3, 7);
-	static Etudiant etudiant6 = new Etudiant("Santa", null, 12, 6);
+	static Etudiant etudiant6 = new Etudiant("Will", null, 12, 6);
 
 	static List<Etudiant> one = Arrays.asList(etudiant1, etudiant2, etudiant3);
 	static List<Etudiant> two = Arrays.asList(etudiant4, etudiant5, etudiant6);
